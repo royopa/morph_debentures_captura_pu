@@ -51,7 +51,7 @@ def get_urls():
     return urls
 
 
-def download_files_debentures(urls):
+def process_files_debentures(urls):
     for url in urls:
         print('Baixando arquivo do ativo', url['ativo'])
         name_file = url['ativo']+'.csv'
@@ -98,10 +98,7 @@ def main():
     create_download_folder()
 
     urls = get_urls()
-    download_files_debentures(urls)
-
-    for file_name in os.listdir(os.path.join('downloads')):
-        file_path = os.path.join('downloads', file_name)
+    process_files_debentures(urls)
 
 
 if __name__ == '__main__':
