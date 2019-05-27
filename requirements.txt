@@ -3,3 +3,4 @@ lxml
 cssselect
 pandas
 wget
+BeautifulSoup4
