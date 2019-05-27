@@ -76,18 +76,20 @@ def process_file(file_path):
     print('Importing {} items'.format(len(df)))
 
     for index, row in df.iterrows():
-        data = {
-            'data': row['Data do PU'],
-            'ativo': row['Ativo'],
-            'valor_nominal': row['Valor Nominal'],
-            'valor_juros': row['Juros'],
-            'valor_premio': row['Prêmio'],
-            'preco_unitario': row['Preço Unitário'],
-            'criterio_calculo': row['Critério de Cálculo'],
-            'situacao': row['Situação']
-        }
-            
-        scraperwiki.sqlite.save(unique_keys=['data', 'ativo'], data=data)
+        try:
+            data = {
+                'data': row['Data do PU'],
+                'ativo': row['Ativo'],
+                'valor_nominal': row['Valor Nominal'],
+                'valor_juros': row['Juros'],
+                'valor_premio': row['Prêmio'],
+                'preco_unitario': row['Preço Unitário'],
+                'criterio_calculo': row['Critério de Cálculo'],
+                'situacao': row['Situação']
+            }
+            scraperwiki.sqlite.save(unique_keys=['data', 'ativo'], data=data)
+        except Exception:
+            continue
 
 
 def main():
