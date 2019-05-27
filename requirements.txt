@@ -4,3 +4,4 @@ cssselect
 pandas
 wget
 BeautifulSoup4
+tqdm
