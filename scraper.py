@@ -93,9 +93,6 @@ def process_file(file_path):
 
 
 def main():
-    # format the name of database used for morph.io
-    os.environ['SCRAPERWIKI_DATABASE_NAME'] = 'sqlite:///data.sqlite'
-    
     # create download folder
     create_download_folder()
 
