@@ -100,6 +100,9 @@ def main():
     urls = get_urls()
     process_files_debentures(urls)
 
+    # rename file
+    os.rename('scraperwiki.sqlite', 'data.sqlite')
+
 
 if __name__ == '__main__':
     main()
