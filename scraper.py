@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import requests
 from bs4 import BeautifulSoup
 import os
