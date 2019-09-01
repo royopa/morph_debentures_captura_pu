@@ -53,16 +53,20 @@ def get_urls():
 
 def process_files_debentures(urls):
     for url in urls:
-        print('Baixando arquivo do ativo', url['ativo'])
-        name_file = url['ativo']+'.csv'
-        path_file = os.path.join('downloads', name_file)
-        # download file
-        download_file(url['url'], path_file)
-        # process file
-        print('Processando arquivo', name_file)
-        process_file(path_file)
-        # remove processed file
-        os.remove(path_file)
+        try:
+            print('Baixando arquivo do ativo', url['ativo'])
+            name_file = url['ativo']+'.csv'
+            path_file = os.path.join('downloads', name_file)
+            # download file
+            download_file(url['url'], path_file)
+            # process file
+            print('Processando arquivo', name_file)
+            process_file(path_file)
+            # remove processed file
+            os.remove(path_file)
+        except:
+            erro('Erro', url)
+            continue
 
 
 def process_file(file_path):
