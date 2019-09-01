@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import requests
 from bs4 import BeautifulSoup
 import os
@@ -102,6 +103,9 @@ def main():
 
     urls = get_urls()
     process_files_debentures(urls)
+
+    # rename file
+    os.rename('scraperwiki.sqlite', 'data.sqlite')
 
 
 if __name__ == '__main__':
