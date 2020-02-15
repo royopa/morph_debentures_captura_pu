@@ -65,7 +65,7 @@ def get_urls():
     return urls
 
 
-def process_files_debentures(urls):
+def download_files_debentures(urls):
     for url in urls:
         try:
             print('Baixando arquivo do ativo', url['ativo'])
@@ -73,14 +73,29 @@ def process_files_debentures(urls):
             path_file = os.path.join('downloads', name_file)
             # download file
             download_file(url['url'], path_file)
-            # process file
-            #print('Processando arquivo', name_file)
-            #process_file(path_file)
-            # remove processed file
-            #os.remove(path_file)
         except:
             print('Erro', url)
             continue
+
+
+def process_files_debentures():
+    download_path = os.path.join('donwloads')
+    for file_name in os.listdir(download_path):
+        path_file = os.path.join(download_path, file_name)
+        print('Processando arquivo', path_file)
+        process_file(path_file)
+        # remove processed file
+        os.remove(path_file)
+
+
+def process_files_debentures():
+    download_path = os.path.join('downloads')
+    for file_name in os.listdir(download_path):
+        path_file = os.path.join(download_path, file_name)
+        print('Processando arquivo', path_file)
+        if process_file(path_file):
+            # remove processed file
+            os.remove(path_file)
 
 
 def process_file(file_path):
@@ -92,6 +107,14 @@ def process_file(file_path):
     )
 
     print('Importing {} items'.format(len(df)))
+
+    # remove as linhas com problemas
+    df = df[df['Ativo'].notnull()]
+
+    # remove unnamed columns
+    df.drop('Unnamed: 8', axis=1, inplace=True)
+
+    print(df.tail())
 
     for index, row in df.iterrows():
         try:
@@ -106,8 +129,10 @@ def process_file(file_path):
                 'situacao': row['Situação']
             }
             scraperwiki.sqlite.save(unique_keys=['data', 'ativo'], data=data)
-        except Exception:
-            continue
+        except Exception as e:
+            print("Error occurred:", e)
+            return False
+    return True
 
 
 def main():
@@ -115,7 +140,8 @@ def main():
     create_download_folder()
 
     urls = get_urls()
-    process_files_debentures(urls)
+    download_files_debentures(urls)
+    process_files_debentures()
 
     # rename file
     os.rename('scraperwiki.sqlite', 'data.sqlite')
