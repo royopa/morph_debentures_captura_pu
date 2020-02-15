@@ -8,12 +8,25 @@ import scraperwiki
 from tqdm import tqdm
 
 
-def download_file(url, file_name):
+def download_file(url, file_path):
+    file_path_csv = file_path.replace('.ZIP', '.CSV')
+    if os.path.exists(file_path) or os.path.exists(file_path_csv):
+        print('Arquivo já baixado anteriormente', file_path)
+        return False
+
     response = requests.get(url, stream=True)
-    with open(file_name, "wb") as handle:
+    
+    if response.status_code != 200:
+        print('Arquivo não encontrado', url, response.status_code)
+        return False
+
+    with open(file_path, "wb") as handle:
+        print('Downloading', url)
         for data in tqdm(response.iter_content()):
             handle.write(data)
     handle.close()
+    return True
+
 
 
 def create_download_folder():
@@ -61,12 +74,12 @@ def process_files_debentures(urls):
             # download file
             download_file(url['url'], path_file)
             # process file
-            print('Processando arquivo', name_file)
-            process_file(path_file)
+            #print('Processando arquivo', name_file)
+            #process_file(path_file)
             # remove processed file
-            os.remove(path_file)
+            #os.remove(path_file)
         except:
-            erro('Erro', url)
+            print('Erro', url)
             continue
 
 
