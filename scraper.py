@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import os
 import pandas as pd
 import scraperwiki
-from tqdm import tqdm
 
 
 def download_file(url, file_path):
@@ -22,7 +21,7 @@ def download_file(url, file_path):
 
     with open(file_path, "wb") as handle:
         print('Downloading', url)
-        for data in tqdm(response.iter_content()):
+        for data in response.iter_content():
             handle.write(data)
     handle.close()
     return True
@@ -88,16 +87,6 @@ def process_files_debentures():
         os.remove(path_file)
 
 
-def process_files_debentures():
-    download_path = os.path.join('downloads')
-    for file_name in os.listdir(download_path):
-        path_file = os.path.join(download_path, file_name)
-        print('Processando arquivo', path_file)
-        if process_file(path_file):
-            # remove processed file
-            os.remove(path_file)
-
-
 def process_file(file_path):
     df = pd.read_csv(
         file_path,
@@ -114,7 +103,7 @@ def process_file(file_path):
     # remove unnamed columns
     df.drop('Unnamed: 8', axis=1, inplace=True)
 
-    print(df.tail())
+    #print(df.tail())
 
     for index, row in df.iterrows():
         try:
