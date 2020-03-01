@@ -6,6 +6,17 @@ import os
 import pandas as pd
 import scraperwiki
 
+def prepare_download_folder(folder_name):
+    folder_path = os.path.join('downloads', folder_name)
+    return prepare_folder(folder_path)
+
+
+def prepare_folder(folder_path):
+    if not os.path.exists(folder_path):
+        Path(folder_path).mkdir(parents=True, exist_ok=True)
+
+    return folder_path
+
 
 def download_file(url, file_path):
     file_path_csv = file_path.replace('.ZIP', '.CSV')
@@ -78,7 +89,7 @@ def download_files_debentures(urls):
 
 
 def process_files_debentures():
-    download_path = os.path.join('donwloads')
+    download_path = os.path.join('downloads')
     for file_name in os.listdir(download_path):
         path_file = os.path.join(download_path, file_name)
         print('Processando arquivo', path_file)
