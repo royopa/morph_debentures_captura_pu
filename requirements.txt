@@ -6,3 +6,4 @@ numpy==1.18.5
 dask==2.20.0
 beautifulsoup4==4.9.2
 scraperwiki==0.5.1
+dask[dataframe]
