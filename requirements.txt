@@ -1,7 +1,8 @@
-scraperwiki
-lxml
-cssselect
-pandas
-wget
-BeautifulSoup4
-tqdm
+tqdm==4.47.0
+pandas==1.0.5
+requests==2.24.0
+bizdays==0.3.0
+numpy==1.18.5
+dask==2.20.0
+beautifulsoup4==4.9.2
+scraperwiki==0.5.1
