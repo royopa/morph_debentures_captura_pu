@@ -1,9 +1,9 @@
+dask
+dask[dataframe]
 tqdm
 pandas
 requests
 bizdays
 numpy
-dask
 beautifulsoup4
 scraperwiki
-"dask[dataframe]"
