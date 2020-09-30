@@ -46,6 +46,7 @@ def get_links(data_inicial):
 
 
 def main():
+    os.environ['SCRAPERWIKI_DATABASE_NAME'] = 'sqlite:///data.sqlite'
     utils.prepare_download_folder('downloads')
 
     # pega a data máxima de referência
