@@ -1,5 +1,3 @@
-dask
-dask[dataframe]
 tqdm
 pandas
 requests
@@ -7,3 +5,4 @@ bizdays
 numpy
 beautifulsoup4
 scraperwiki
+dask[complete]
