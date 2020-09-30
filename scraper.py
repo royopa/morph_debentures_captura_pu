@@ -3,7 +3,7 @@ import csv
 import os
 import time
 from datetime import datetime, timedelta
-
+import shutil
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -87,4 +87,6 @@ if __name__ == '__main__':
     main()
     time.sleep(60)
     # rename file
-    os.rename('scraperwiki.sqlite', 'data.sqlite')
+    print('Renomeando arquivo sqlite')
+    if os.path.exists('scraperwiki.sqlite'):
+        shutil.copy('scraperwiki.sqlite', 'data.sqlite')
