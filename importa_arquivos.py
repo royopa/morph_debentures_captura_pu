@@ -5,6 +5,7 @@ import os
 import dask.dataframe as dd
 import numpy as np
 import pandas as pd
+os.environ['SCRAPERWIKI_DATABASE_NAME'] = 'sqlite:///data.sqlite'
 import scraperwiki
 
 
