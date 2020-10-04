@@ -97,7 +97,7 @@ def main():
             print('Salvando resultado capturado no arquivo', file_path)
             df.to_csv(file_path, mode='a', index=False)
 
-            engine = create_engine('sqlite:///data.sqlite', echo=True)
+            engine = create_engine('sqlite:///data.sqlite', echo=False)
             sqlite_connection = engine.connect()
             print('Importando usando pandas to_sql')
             df.to_sql(
