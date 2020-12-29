@@ -100,20 +100,24 @@ def main():
             engine = create_engine('sqlite:///data.sqlite', echo=False)
             sqlite_connection = engine.connect()
             print('Importando usando pandas to_sql')
-            
-            #df.to_sql(
-                #'swdata',
-                #sqlite_connection,
-                #if_exists='append',
-                #index=False
-            #)
+
+            # df.to_sql(
+            # 'swdata',
+            # sqlite_connection,
+            # if_exists='append',
+            # index=False,
+            # chunksize=50000
+            # )
 
             for row in df.to_dict('records'):
                 try:
-                    scraperwiki.sqlite.save(unique_keys=['data_referencia', 'ativo'], data=row)
+                    scraperwiki.sqlite.save(
+                        unique_keys=['data_referencia', 'ativo'],
+                        data=row
+                    )
                 except Exception as e:
-                     print("Error occurred:", e)
-                     continue
+                    print("Error occurred:", e)
+                    continue
 
 
 if __name__ == '__main__':

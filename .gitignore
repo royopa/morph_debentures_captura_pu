@@ -1,5 +1,6 @@
 # Ignore output of scraper
 data.sqlite
+# scraperwiki.sqlite
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
