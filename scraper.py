@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import csv
 import os
+import shutil
 import time
 from datetime import datetime, timedelta
-import shutil
+
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+import importa_arquivo
 import importa_arquivos
 import utils
 
@@ -79,8 +81,8 @@ def main():
             print('Aguardando 30 segundos, para evitar timeout')
             time.sleep(30)
 
-    print('Consolidando arquivos baixados')
-    importa_arquivos.main()
+        # importa arquivo
+        importa_arquivo.main(path_file)
 
 
 if __name__ == '__main__':
