@@ -106,16 +106,6 @@ def main(path_file):
             chunksize=50000
         )
 
-        for row in df.to_dict('records'):
-            try:
-                scraperwiki.sqlite.save(
-                    unique_keys=['data_referencia', 'ativo'],
-                    data=row
-                )
-            except Exception as e:
-                print("Error occurred:", e)
-                continue
-
 
 if __name__ == '__main__':
     main()
