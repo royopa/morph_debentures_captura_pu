@@ -55,8 +55,9 @@ def download(url, params, file_name):
     if response.status_code != 200:
         'Nenhum arquivo encontrado nessa url'
         return False
+
     with open(file_name, "wb") as handle:
-        for data in tqdm(response.iter_content()):
+        for data in response.iter_content(chunk_size=8192):
             handle.write(data)
     handle.close()
 
